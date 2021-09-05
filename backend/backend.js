@@ -39,7 +39,8 @@ app.post("/api/tasks", (req, res) => {
     const task = new Task({
         title: req.body.title,
         description: req.body.description,
-        category: req.body.category
+        category: req.body.category,
+        archive: req.body.archive
     })
     task.save()
     .then(result => {

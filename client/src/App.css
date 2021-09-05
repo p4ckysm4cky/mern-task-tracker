@@ -12,3 +12,22 @@
 .test {
   color: red
 }
+
+.app {
+  margin: 0px;
+  padding: 0px;
+}
+
+
+
+.content {
+  margin: 8px;
+}
+
+.appBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+}
+

@@ -14,6 +14,10 @@ const taskSchema = new Schema({
     category: {
         type: String,
         required: false
+    },
+    archive: {
+        type: Boolean,
+        required: false
     }
 }, {timesteamps: true})
 
