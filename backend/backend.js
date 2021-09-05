@@ -6,7 +6,7 @@ const Task = require("./task.js")
 const app = express()
 // Middleware to listen to json incoming request
 app.use(express.json())
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 8000
 
 
 const mongoDB="mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false"
