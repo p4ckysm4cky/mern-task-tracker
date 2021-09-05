@@ -23,7 +23,7 @@ mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true})
 
 
 
-// 
+// sends all task
 app.get("/api/tasks", (req, res) => {
     Task.find()
         .then(result => {
@@ -34,7 +34,7 @@ app.get("/api/tasks", (req, res) => {
         })
 })
 
-
+// creates a new task
 app.post("/api/tasks", (req, res) => {
     const task = new Task({
         title: req.body.title,
@@ -50,6 +50,7 @@ app.post("/api/tasks", (req, res) => {
     })
 })
 
+// sends task of a specified id
 app.get("/api/tasks/:id", (req, res) => {
     Task.findById(req.params.id)
         .then(result => {
@@ -58,4 +59,22 @@ app.get("/api/tasks/:id", (req, res) => {
         .catch(err =>{
             res.status(400).send(err)
         })
+})
+
+// updates a task based on id
+app.put("/api/tasks/:id", (req, res) => {
+    Task.findByIdAndUpdate(req.params.id, req.body, {new: true})
+    .then(result => {
+        res.send(result)
+    })
+    .catch(err =>{
+        res.status(400).send(err)
+    })
+})
+
+// removes a task based on id
+app.delete("/api/tasks/:id", (req, res) => {
+    Task.findByIdAndDelete(req.params.id)
+    .then(result => result.send(result))
+    .catch(err => res.status(400).send(err))
 })
