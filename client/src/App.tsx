@@ -44,7 +44,7 @@ function App() {
 
   
   const taskItems = tasks.map((task: any) =>
-    <TaskCard key={task._id} tasks={task}/>
+    <TaskCard key={task._id} task={task}/>
   )
   return (
     <ThemeProvider theme={theme}>

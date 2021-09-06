@@ -5,6 +5,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton'
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles({
   root: {
@@ -32,20 +34,17 @@ function SimpleCard(props: any) {
   return (
     <Card className={classes.root}>
       <CardContent>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Word of the Day
+        <Typography className={classes.title} color="textPrimary" gutterBottom>
+          {props.task.title}
         </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          adjective
-        </Typography>
-        <Typography variant="body2" component="p">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
+        <Typography variant="body2" component="p" color="textSecondary">
+            {props.task.description}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Edit</Button>
+        <IconButton>
+            <DeleteIcon/>
+        </IconButton>
       </CardActions>
     </Card>
   );
