@@ -40,7 +40,6 @@ app.get("/api/tasks", (req, res) => {
 
 // creates a new task
 app.post("/api/tasks", (req, res) => {
-    console.log(res.body)
     const task = new Task({
         title: req.body.title,
         description: req.body.description,

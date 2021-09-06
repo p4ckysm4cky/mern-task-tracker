@@ -21,7 +21,7 @@ function Form(props: any) {
 
     const handleClose = () => {
       setTaskTitleError(false)
-      setOpen(false);
+      setOpen(false)
       setTaskTitle("")
       setTaskDescription("")
     };
@@ -41,8 +41,10 @@ function Form(props: any) {
         axios.post('http://localhost:8000/api/tasks', taskObject)
         .then(function (response: any) {
           console.log(response);
+          handleClose()
         })
         .catch(function (error: any) {
+          setTaskTitleError(false)
           console.log(error);
         })
       }
