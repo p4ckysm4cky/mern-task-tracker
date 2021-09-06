@@ -8,6 +8,7 @@ import pink from '@material-ui/core/colors/pink';
 import teal from '@material-ui/core/colors/teal';
 import NoteIcon from '@material-ui/icons/Note';
 import Form from "./components/Form"
+const axios = require('axios').default
 
 const primary: string = teal["A700"]
 
@@ -40,8 +41,6 @@ function App() {
 
         <div className="content">
             <Form/>
-            
-
         </div>
       </div>
     </ThemeProvider>

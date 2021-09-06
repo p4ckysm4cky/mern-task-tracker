@@ -1,28 +1,41 @@
 import React from "react"
 import Dialog from '@material-ui/core/Dialog';
-import IconButton from '@material-ui/core/IconButton';
 import { Fab } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import TextField from '@material-ui/core/TextField';
 import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
+import Button from '@material-ui/core/Button';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import SaveIcon from '@material-ui/icons/Save';
 
 function Form(props: any) {
-    const [open, setOpen] = React.useState(true);
+    const [open, setOpen] = React.useState(false);
+    const [taskTitle, setTaskTitle] = React.useState("")
+    const [taskTitleError, setTaskTitleError] = React.useState(false)
+    const [taskDescription, setTaskDescription] = React.useState("")
 
     const handleClickOpen = () => {
       setOpen(true);
     };
 
     const handleClose = () => {
+      setTaskTitleError(false)
       setOpen(false);
+      setTaskTitle("")
+      setTaskDescription("")
     };
 
     // const handleClose = () => {
     //   onClose(selectedValue);
     // };
+    const handleSubmit = () => {
+      if (taskTitle.length === 0) {
+        setTaskTitleError(true)
+      } else {
+        console.log(taskTitle)
+        console.log(taskDescription)
+      }
+    }
   
 
 
@@ -35,13 +48,33 @@ function Form(props: any) {
        </div>
         <Dialog fullWidth={true} aria-labelledby="simple-dialog-title" open={open} onClose={handleClose}>
             <DialogTitle >Add New Task</DialogTitle>
-            <TextField style={{margin: 10}} label="Title*" />
+            <TextField 
+              style={{margin: 10}} 
+              label="Title*" 
+              value={taskTitle}
+              error={taskTitleError}
+              onChange={(e) => setTaskTitle(e.target.value)}
+            
+            />
             <TextField
               style={{margin: 10}}
               label="Description"
               multiline
+              value={taskDescription}
+              onChange={(e) => setTaskDescription(e.target.value)}
               rows={6}
             />
+            <DialogActions>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleSubmit}
+                startIcon={<SaveIcon/>}
+              >
+                Save
+              </Button>
+
+            </DialogActions>
         </Dialog>
         </div>
     )
