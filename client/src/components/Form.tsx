@@ -7,6 +7,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import SaveIcon from '@material-ui/icons/Save';
+const axios = require('axios').default;
 
 function Form(props: any) {
     const [open, setOpen] = React.useState(false);
@@ -32,8 +33,18 @@ function Form(props: any) {
       if (taskTitle.length === 0) {
         setTaskTitleError(true)
       } else {
-        console.log(taskTitle)
-        console.log(taskDescription)
+        let taskObject = {
+          title: taskTitle,
+          description: taskDescription
+        }
+        console.log(taskObject)
+        axios.post('http://localhost:8000/api/tasks', taskObject)
+        .then(function (response: any) {
+          console.log(response);
+        })
+        .catch(function (error: any) {
+          console.log(error);
+        })
       }
     }
   
