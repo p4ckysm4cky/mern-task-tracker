@@ -1,11 +1,15 @@
 const mongoose = require("mongoose")
 const express = require("express")
 const Task = require("./task.js")
+const cors = require("cors")
 
 
 const app = express()
 // Middleware to listen to json incoming request
+app.use(cors())
 app.use(express.json())
+
+
 const PORT = process.env.PORT || 8000
 
 
@@ -36,6 +40,7 @@ app.get("/api/tasks", (req, res) => {
 
 // creates a new task
 app.post("/api/tasks", (req, res) => {
+    console.log(res.body)
     const task = new Task({
         title: req.body.title,
         description: req.body.description,
