@@ -26,9 +26,7 @@ function Form(props: any) {
       setTaskDescription("")
     };
 
-    // const handleClose = () => {
-    //   onClose(selectedValue);
-    // };
+
     const handleSubmit = () => {
       if (taskTitle.length === 0) {
         setTaskTitleError(true)
@@ -42,6 +40,8 @@ function Form(props: any) {
         .then(function (response: any) {
           console.log(response);
           handleClose()
+          // ghetto way of updating parent
+          props.setForceUpdate(!props.forceUpdate) 
         })
         .catch(function (error: any) {
           setTaskTitleError(false)

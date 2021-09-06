@@ -23,6 +23,7 @@ const theme = createTheme({
 
 function App() {
   const [tasks, setTasks] = useState([]);
+  const [forceUpdate, setForceUpdate] = useState(false)
   useEffect(() => {
     // Update the document title using the browser API
     axios
@@ -31,15 +32,20 @@ function App() {
         // handle success
         console.log(response)        
         setTasks(response.data);
+        
       })
       .catch(function (error: any) {
         // handle error
         console.log(error);
       });
-  }, []); // Techno showed me how to not make an infinite update loop :) 
+  }, [forceUpdate]); // Techno showed me how to not make an infinite update loop :) 
 
 
-  console.log(tasks)
+
+  
+  const taskItems = tasks.map((task: any) =>
+    <TaskCard key={task._id} tasks={task}/>
+  )
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
@@ -49,9 +55,11 @@ function App() {
             Task tracker
           </Typography>
         </AppBar>
-        <div style={{ display: "flex", flexWrap: "wrap" }}></div>
+        <div style={{ display: "flex", flexWrap: "wrap"}}>
+          {taskItems}
+        </div>
         <div className="content">
-          <Form />
+          <Form forceUpdate={forceUpdate} setForceUpdate={setForceUpdate}/>
         </div>
       </div>
     </ThemeProvider>
