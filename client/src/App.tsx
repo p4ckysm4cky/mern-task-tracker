@@ -10,6 +10,10 @@ import Form from "./components/Form";
 import TaskCard from "./components/TaskCard";
 const axios = require("axios").default;
 
+
+
+const {REACT_APP_BACKEND_URL} = process.env
+
 const primary: string = teal["A700"];
 
 const theme = createTheme({
@@ -27,7 +31,7 @@ function App() {
   useEffect(() => {
     // Update the document title using the browser API
     axios
-      .get("http://localhost:8000/api/tasks")
+      .get(`${REACT_APP_BACKEND_URL}/api/tasks`)
       .then(function (response: any) {
         // handle success
         console.log(response)        

@@ -6,7 +6,10 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
+require('dotenv').config()
 const axios = require("axios").default;
+
+const {REACT_APP_BACKEND_URL} = process.env
 
 const useStyles = makeStyles({
   root: {
@@ -32,7 +35,7 @@ function SimpleCard(props: any) {
 
   const handleDelete = () => {
 	console.log(`localhost:8000/api/tasks/${props.task._id}`)
-	axios.delete(`http://localhost:8000/api/tasks/${props.task._id}`)
+	axios.delete(`${REACT_APP_BACKEND_URL}/api/tasks/${props.task._id}`)
 	.then((response: any) => {
 		console.log(response)
 		props.forceUpdateFunc()

@@ -9,6 +9,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import SaveIcon from '@material-ui/icons/Save';
 const axios = require('axios').default;
 
+const {REACT_APP_BACKEND_URL} = process.env
+
 function Form(props: any) {
     const [open, setOpen] = React.useState(false);
     const [taskTitle, setTaskTitle] = React.useState("")
@@ -36,7 +38,7 @@ function Form(props: any) {
           description: taskDescription
         }
         console.log(taskObject)
-        axios.post('http://localhost:8000/api/tasks', taskObject)
+        axios.post(`${REACT_APP_BACKEND_URL}/api/tasks`, taskObject)
         .then(function (response: any) {
           console.log(response);
           handleClose()
