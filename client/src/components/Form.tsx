@@ -41,7 +41,7 @@ function Form(props: any) {
           console.log(response);
           handleClose()
           // ghetto way of updating parent
-          props.setForceUpdate(!props.forceUpdate) 
+          props.forceUpdateFunc()
         })
         .catch(function (error: any) {
           setTaskTitleError(false)

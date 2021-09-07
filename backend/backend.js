@@ -6,8 +6,15 @@ const cors = require("cors")
 
 const app = express()
 // Middleware to listen to json incoming request
-app.use(cors())
+// app.use(cors())
 app.use(express.json())
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+    });
+
 
 
 const PORT = process.env.PORT || 8000
@@ -80,6 +87,10 @@ app.put("/api/tasks/:id", (req, res) => {
 // removes a task based on id
 app.delete("/api/tasks/:id", (req, res) => {
     Task.findByIdAndDelete(req.params.id)
-    .then(result => result.send(result))
-    .catch(err => res.status(400).send(err))
+    .then(result => {
+        res.send(result)
+    })
+    .catch(err =>{
+        res.status(400).send(err)
+    })
 })

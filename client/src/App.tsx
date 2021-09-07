@@ -41,10 +41,14 @@ function App() {
   }, [forceUpdate]); // Techno showed me how to not make an infinite update loop :) 
 
 
-
+  // This is probably questionnable
+  // but this function allows the child to force parent to rerender
+  const forceUpdateFunc = () => {
+    setForceUpdate(!forceUpdate)
+  }
   
   const taskItems = tasks.map((task: any) =>
-    <TaskCard key={task._id} task={task}/>
+    <TaskCard key={task._id} task={task} forceUpdateFunc={forceUpdateFunc}/>
   )
   return (
     <ThemeProvider theme={theme}>
@@ -59,7 +63,7 @@ function App() {
           {taskItems}
         </div>
         <div className="content">
-          <Form forceUpdate={forceUpdate} setForceUpdate={setForceUpdate}/>
+          <Form forceUpdateFunc={forceUpdateFunc}/>
         </div>
       </div>
     </ThemeProvider>
